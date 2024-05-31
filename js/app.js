@@ -1,13 +1,12 @@
-/*-------------------------------- Constants --------------------------------*/
-
-
-/*---------------------------- Variables (state) ----------------------------*/
-
-
-/*------------------------ Cached Element References ------------------------*/
-
 const squareElements = document.querySelectorAll('.sqr');
 const messageElement = document.querySelector('#message');
+const boardElement = document.querySelector('.board');
+
+boardElement.addEventListener('click', (evt) => {
+  const square = evt.target;
+  const squreIdx = square.id;
+  console.log('clicked');
+});
 
 console.log(squareElements);
 console.log(messageElement);
@@ -55,6 +54,10 @@ const updateMessage = () => {
     messageElement.textContent = `Player ${turn} has won!`
   }
 };
+
+const handleClick = (evt) => {
+
+}
 
 const render = () => {
   updateBoard();
