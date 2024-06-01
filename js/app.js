@@ -3,13 +3,15 @@ const messageElement = document.querySelector('#message');
 const boardElement = document.querySelector('.board');
 
 boardElement.addEventListener('click', (evt) => {
-  const square = evt.target;
-  const squreIdx = square.id;
-  console.log('clicked');
+  const squareIndex = event.target.id;
+  console.log(squareIndex);
+  if (board[squareIndex] !=='') {
+    console.log('This spot has already been taken, please select another')
+  }
 });
 
-console.log(squareElements);
-console.log(messageElement);
+//console.log(squareElements);
+//console.log(messageElement);
 
 const winningCombos = [
   [ 0, 1, 2 ],
@@ -27,6 +29,7 @@ let board = [
   '', '', '',
   '', '', ''
 ]; 
+
 let turn = 'x';
 let winner = false;
 let tie = false; 
@@ -56,7 +59,7 @@ const updateMessage = () => {
 };
 
 const handleClick = (evt) => {
-
+  
 }
 
 const render = () => {
