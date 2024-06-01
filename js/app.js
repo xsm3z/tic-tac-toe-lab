@@ -30,8 +30,8 @@ const init = () => {
 window.onload = init;
 
 const updateBoard = () => {
-  squareElements.forEach((square, idx) => {
-    square.textContent = board[idx];
+  squareElements.forEach((square, index) => {
+    square.textContent = board[index];
   });
 }
 
@@ -45,16 +45,24 @@ const updateMessage = () => {
   }
 };
 
-const handleClick = (evt) => {
-  const squareIndex = event.target.id;
+const handleClick = (event) => { //solved my issue here... used evt not event
+  const squareIndex = event.target.id; 
   if (board[squareIndex] !== '' || winner){
     return;
   }
+  placePiece(squareIndex); // called handleClick on accident instead of placePiece
+}
+
+squareElements.forEach(square => {
+  square.addEventListener('click', handleClick);
+});
+
+const placePiece = (index) => {
+  board[index] = turn;
+  console.log(board)
 }
 
 const render = () => {
   updateBoard();
   updateMessage();
 };
-
-console.log(board)
