@@ -1,5 +1,6 @@
 const squareElements = document.querySelectorAll('.sqr');
 const messageElement = document.querySelector('#message');
+const resetElement = document.querySelector('#reset-button')
 
 const winningCombos = [
   [ 0, 1, 2 ],
@@ -25,14 +26,14 @@ let tie = false;
 const init = () => {
   console.log('Game has started');
   render();
-};
+}
 
 window.onload = init;
 
 const updateBoard = () => {
   squareElements.forEach((square, index) => {
     square.textContent = board[index];
-  });
+  })
 }
 
 const updateMessage = () => {
@@ -43,26 +44,60 @@ const updateMessage = () => {
   } else {
     messageElement.textContent = `Player ${turn} has won!`
   }
-};
+}
 
-const handleClick = (event) => { //solved my issue here... used evt not event
+const handleClick = (event) => { 
   const squareIndex = event.target.id; 
   if (board[squareIndex] !== '' || winner){
     return;
   }
-  placePiece(squareIndex); // called handleClick on accident instead of placePiece
+  placePiece(squareIndex); 
+  checkForWinner ();
+  checkForWinner();
+  checkForTie();
+  switchPlayerTurn()
+  render()
 }
 
 squareElements.forEach(square => {
   square.addEventListener('click', handleClick);
-});
+})
 
 const placePiece = (index) => {
   board[index] = turn;
   console.log(board)
 }
 
+const checkForWinner = () => {
+  for (let winningCombo of winningCombos) {
+    const [ a, b, c ] = winningCombo;
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      winner = true;
+      return;
+    }
+ }
+}
+
+const checkForTie = () => {
+  if (winner === false && board.every(square => square != '')) {
+    tie = true;
+  } else {
+    return;
+  }
+}
+
+const switchPlayerTurn = () => {
+  if (winner === false) {
+    if (turn === 'x') {
+      turn = 'o';
+    } else {
+      turn = 'x';
+    }
+  }
+}
+
+
 const render = () => {
   updateBoard();
   updateMessage();
-};
+}
