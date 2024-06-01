@@ -1,17 +1,5 @@
 const squareElements = document.querySelectorAll('.sqr');
 const messageElement = document.querySelector('#message');
-const boardElement = document.querySelector('.board');
-
-boardElement.addEventListener('click', (evt) => {
-  const squareIndex = event.target.id;
-  console.log(squareIndex);
-  if (board[squareIndex] !=='') {
-    console.log('This spot has already been taken, please select another')
-  }
-});
-
-//console.log(squareElements);
-//console.log(messageElement);
 
 const winningCombos = [
   [ 0, 1, 2 ],
@@ -42,11 +30,10 @@ const init = () => {
 window.onload = init;
 
 const updateBoard = () => {
-  board.forEach((value, idx) => {
-    const square = squareElements[idx];
-    square.textContent = value;
+  squareElements.forEach((square, idx) => {
+    square.textContent = board[idx];
   });
-};
+}
 
 const updateMessage = () => {
   if( winner === false && tie === false ) {
@@ -59,7 +46,10 @@ const updateMessage = () => {
 };
 
 const handleClick = (evt) => {
-  
+  const squareIndex = event.target.id;
+  if (board[squareIndex] !== '' || winner){
+    return;
+  }
 }
 
 const render = () => {
@@ -67,4 +57,4 @@ const render = () => {
   updateMessage();
 };
 
-/*----------------------------- Event Listeners -----------------------------*/
+console.log(board)
