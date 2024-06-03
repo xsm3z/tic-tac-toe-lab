@@ -38,11 +38,11 @@ const updateBoard = () => {
 
 const updateMessage = () => {
   if( winner === false && tie === false ) {
-    messageElement.textContent = `It's player ${turn}'s turn`;
+    messageElement.textContent = `Player ${turn.toUpperCase()}, GO!`;
   } else if ( winner ===  false && tie === true ) {
-    messageElement.textContent = "Cat's game!"
+    messageElement.textContent = "womp womp"
   } else {
-    messageElement.textContent = `Player ${turn} has won!`
+    messageElement.textContent = `Player ${turn.toUpperCase()} wins!`
   }
 }
 
@@ -58,10 +58,6 @@ const handleClick = (event) => {
   switchPlayerTurn()
   render()
 }
-
-squareElements.forEach(square => {
-  square.addEventListener('click', handleClick);
-})
 
 const placePiece = (index) => {
   board[index] = turn;
@@ -96,8 +92,29 @@ const switchPlayerTurn = () => {
   }
 }
 
+const reset = () => {
+  board = [
+    '', '', '',
+    '', '', '',
+    '', '', ''
+  ]; 
+  
+  turn = 'x';
+  winner = false;
+  tie = false; 
+
+  render()
+}
+
+
 
 const render = () => {
   updateBoard();
   updateMessage();
 }
+
+squareElements.forEach(square => {
+  square.addEventListener('click', handleClick);
+})
+
+resetElement.addEventListener('click', reset);

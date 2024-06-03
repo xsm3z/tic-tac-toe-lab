@@ -14,13 +14,42 @@ body {
   .sqr {
     width: 30%;
     aspect-ratio: 1/1;
-    border: 3px solid rgb(44, 7, 52);
+    border: 3px solid rgba(0, 0, 0);
+    border-radius: 8px;
     font-size: 64px;
+    text-align: center;
+    margin: 1px
+  }
+
+  h1 {
     text-align: center;
   }
 
   .sqr:hover {
-    background-color: rgb(44, 7, 52);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
   
-  
+  #reset-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  #reset-button {
+    background-color: rgb(65, 0, 0);
+    color: white;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px 7px;
+  }
+
+  .game-board {
+    display: flex;
+    justify-content: center;
+  }
